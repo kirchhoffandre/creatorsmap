@@ -1,0 +1,15 @@
+<div class="container">
+
+<div *ngIf="auth.user$ | async as user">
+  <h3>logged in as {{ user.displayName}}</h3>
+</div>
+
+<button class="btn btn-primary" (click)="auth.login()">Login With Google</button>
+<button class="btn btn-primary" (click)="auth.logout()">Logout With Google</button>
+
+<div *ngFor="let item of auth.youtubeItems">
+  <h3>{{ item }} </h3>
+</div>
+
+
+</div>

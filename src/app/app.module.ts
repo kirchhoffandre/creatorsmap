@@ -28,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { YoutubeLoginComponent } from './components/login/youtube-login/youtube-login.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     AboutComponent,
     MissionComponent,
     ErrorComponent,
-    ContactsComponent
+    ContactsComponent,
+    YoutubeLoginComponent
   ],
   imports: [
     BrowserModule,
