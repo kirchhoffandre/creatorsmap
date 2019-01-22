@@ -50,7 +50,8 @@ export class AuthService {
     const googleUser = await googleAuth.signIn();
   
     const token = googleUser.getAuthResponse().id_token;
-  
+    
+    console.log('my google user');
     console.log(googleUser);
     
     const credential = auth.GoogleAuthProvider.credential(token);
@@ -64,25 +65,22 @@ export class AuthService {
     // this.afAuth.auth.signInWithPopup(provider)
     
   }
-  
+
+
   logout() {
     console.log('logout clicked');
     this.afAuth.auth.signOut();
   }
 
-  
+
   async getYoutubeInfo() {
     const events = await gapi.client.youtube.channels.list({
-      mine: true,
-      part: 'snippet,contentDetails,statistics'
+      part: 'snippet,contentDetails,statistics',
+      mine: true
     });
-
-    
-    console.log('youtube events');
     console.log(events);
 
-    this.youtubeItems = events.result.items;
-    
+    this.youtubeItems = events.items.id;
 
   }
 
