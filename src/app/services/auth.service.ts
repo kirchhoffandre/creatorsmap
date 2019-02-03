@@ -114,7 +114,7 @@ export class AuthService {
     console.log(events);
     
        // Youtube Data
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
+    const userRef: AngularFirestoreDocument = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
 
     const youtubeData = { 
         youid: events.result.items[0].id,
