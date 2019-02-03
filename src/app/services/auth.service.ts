@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
+
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { switchMap } from 'rxjs/operators';
+import { User } from './user.model';
+
 
 declare var gapi: any;
-
 
 
 @Injectable({
@@ -17,9 +22,19 @@ export class AuthService {
   channelID: string;
   youtubeItems: any[];
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
     this.initClient();
-    this.user$ = afAuth.authState;
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap( user => {
+        if(user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return of(null);
+        }
+      })
+    );
+
+    
   }
 
 
@@ -50,39 +65,83 @@ export class AuthService {
     const googleUser = await googleAuth.signIn();
   
     const token = googleUser.getAuthResponse().id_token;
-    
+
     console.log('my google user');
     console.log(googleUser);
     
     const credential = auth.GoogleAuthProvider.credential(token);
-
     await this.afAuth.auth.signInAndRetrieveDataWithCredential(credential);
-  
-  
+    
+    await this.getYoutubeInfo();
+
+    return this.updateUserData(this.afAuth.auth.currentUser);
     // Alternative approach, use the Firebase login with scopes and make RESTful API calls
     // const provider = new auth.GoogleAuthProvider()
     // provider.addScope('https://www.googleapis.com/auth/calendar');
-    // this.afAuth.auth.signInWithPopup(provider)
+    // const credential =  this.afAuth.auth.signInWithPopup(provider);
+
     
+  }
+
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+
+    const data = { 
+      uid: user.uid, 
+      email: user.email, 
+      displayName: user.displayName, 
+      photoURL: user.photoURL,
+    };
+
+    return userRef.set(data, { merge: true });
+
   }
 
 
   logout() {
     console.log('logout clicked');
     this.afAuth.auth.signOut();
+    //return this.router.navigate(['/']);
   }
 
 
   async getYoutubeInfo() {
     const events = await gapi.client.youtube.channels.list({
-      part: 'snippet,contentDetails,statistics',
-      mine: true
+      mine: true,
+      part: 'contentDetails, snippet, statistics'
     });
     console.log(events);
+    
+       // Youtube Data
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
 
-    this.youtubeItems = events.items.id;
+    const youtubeData = { 
+        youid: events.result.items[0].id,
+        country: events.result.items[0].snippet.country, 
+        customUrl: events.result.items[0].snippet.customUrl, 
+        description: events.result.items[0].snippet.description,
+        publishedAt : events.result.items[0].snippet.publishedAt,
+        thumbnailDefault: events.result.items[0].snippet.thumbnails.default,
+        thumbnailhigh: events.result.items[0].snippet.thumbnails.high,
+        thumbnailmedium: events.result.items[0].snippet.thumbnails.medium,
+        subscriberCount: events.result.items[0].statistics.subscriberCount,
+        videoCount: events.result.items[0].statistics.videoCount,
+        viewCount: events.result.items[0].statistics.viewCount,
+    };
+   
+    userRef.set(youtubeData, { merge: true });
+
+    this.youtubeItems = events.result.items;
 
   }
 
 
+  getAuthStatus(){
+    return this.afAuth.auth;
+  }
+
+
 }
+
+

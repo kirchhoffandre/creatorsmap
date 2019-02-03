@@ -1,15 +1,28 @@
+ 
 <div class="container">
+
+<button  class="btn btn-danger" (click)="auth.login()">Login With YouTube</button>
+<button class="btn btn-danger" (click)="auth.logout()">Logout</button>
 
 <div *ngIf="auth.user$ | async as user">
   <h3>logged in as {{ user.displayName}}</h3>
 </div>
 
-<button class="btn btn-primary" (click)="auth.login()">Login With Google</button>
-<button class="btn btn-primary" (click)="auth.logout()">Logout With Google</button>
+<div *ngIf="auth.user$ | async as user">
+  <p>Name: {{ user.displayName }}</p>
+  
 
-<div *ngFor="let item of auth.youtubeItems">
-  <h3>{{ item.id }}</h3>
+  <p>Youtube Data</p>
+  <p>Channel ID: {{user.youid}}</p>
+  <p>Channel Description: {{ user.description }}</p>
+  <p>Video Count: {{user.videoCount}}</p>
+  <p>View Count: {{user.viewCount}}</p>
+  <p>Country: {{user.country}}</p>
+  <p>Published {{user.publishedAt | date }}</p>
+  <p></p>
 </div>
 
 
+
 </div>
+

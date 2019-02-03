@@ -6,12 +6,14 @@ import { PrivacyComponent } from '../components/native/misc/privacy/privacy.comp
 import { AboutComponent } from '../components/native/misc/about/about.component';
 import { MissionComponent } from '../components/native/misc/mission/mission.component';
 import { ErrorComponent } from '../components/native/misc/error/error.component';
+import { YoutubeLoginComponent } from '../components/login/youtube-login/youtube-login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'mission', component: MissionComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'login', component: YoutubeLoginComponent},
   { path: '**', component: ErrorComponent}
 ];
 
