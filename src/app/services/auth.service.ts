@@ -20,7 +20,9 @@ export class AuthService {
 
   user$: Observable<firebase.User>;
   channelID: string;
-  youtubeItems: any[];
+
+
+
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
     this.initClient();
@@ -107,38 +109,29 @@ export class AuthService {
 
 
   async getYoutubeInfo() {
-    const events = await gapi.client.youtube.channels.list({
-      mine: true,
-      part: 'contentDetails, snippet, statistics'
-    });
-    console.log(events);
+    try{
+      const events = await gapi.client.youtube.channels.list({
+        mine: true,
+        part: 'contentDetails, snippet, statistics,brandingSettings, contentOwnerDetails, topicDetails'
+      });
+      console.log(events);
+      
+         // Youtube Data
+      const userRef: AngularFirestoreDocument = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
+
+      userRef.set(events.result.items[0], { merge: true });
+      this.router.navigate(['/useradmin']);
+    } catch (error) {
+      console.log(error);
+      this.router.navigate(['/']);
+    }
     
-       // Youtube Data
-    const userRef: AngularFirestoreDocument = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
-
-    const youtubeData = { 
-        youid: events.result.items[0].id,
-        country: events.result.items[0].snippet.country, 
-        customUrl: events.result.items[0].snippet.customUrl, 
-        description: events.result.items[0].snippet.description,
-        publishedAt : events.result.items[0].snippet.publishedAt,
-        thumbnailDefault: events.result.items[0].snippet.thumbnails.default,
-        thumbnailhigh: events.result.items[0].snippet.thumbnails.high,
-        thumbnailmedium: events.result.items[0].snippet.thumbnails.medium,
-        subscriberCount: events.result.items[0].statistics.subscriberCount,
-        videoCount: events.result.items[0].statistics.videoCount,
-        viewCount: events.result.items[0].statistics.viewCount,
-    };
-   
-    userRef.set(youtubeData, { merge: true });
-
-    this.youtubeItems = events.result.items;
 
   }
 
 
   getAuthStatus(){
-    return this.afAuth.auth;
+    return this.afAuth.auth.currentUser.uid;
   }
 
 

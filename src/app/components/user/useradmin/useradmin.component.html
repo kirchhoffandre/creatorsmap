@@ -1,0 +1,21 @@
+
+
+  <div *ngIf="auth.user$ | async as user">
+    <h1>Welcome to your Admin Panel</h1>
+    <p>You are currently logged in as {{ user.displayName }}</p>
+    <p>Link to your channel id!</p>
+
+    <ul *ngIf="user$ | async as user">
+      <li>{{user.displayName}}</li>
+      <li>{{ user$ | json }}</li>
+    </ul>
+
+
+    <label for="">Lat</label>  <input type="number" [(ngModel)]="lat">
+    <label for="">Lng</label>  <input type="number" [(ngModel)]="lng">
+    
+    <button  class="btn btn-danger" (click)="updateLocation()">Update Location</button>
+  
+
+    
+  </div>

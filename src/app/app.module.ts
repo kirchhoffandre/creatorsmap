@@ -29,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatInputModule} from '@angular/material';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { YoutubeLoginComponent } from './components/login/youtube-login/youtube-login.component';
-
+import { UseradminComponent } from './components/user/useradmin/useradmin.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { YoutubeLoginComponent } from './components/login/youtube-login/youtube-
     MissionComponent,
     ErrorComponent,
     ContactsComponent,
-    YoutubeLoginComponent
+    YoutubeLoginComponent,
+    UseradminComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { YoutubeLoginComponent } from './components/login/youtube-login/youtube-
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

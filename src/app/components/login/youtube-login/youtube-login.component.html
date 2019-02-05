@@ -10,10 +10,10 @@
 
 <div *ngIf="auth.user$ | async as user">
   <p>Name: {{ user.displayName }}</p>
-  
+  <p>UID: {{user.uid}}</p>
 
   <p>Youtube Data</p>
-  <p>Channel ID: {{user.youid}}</p>
+  <p>Channel ID: {{user.id}}</p>
   <p>Channel Description: {{ user.description }}</p>
   <p>Video Count: {{user.videoCount}}</p>
   <p>View Count: {{user.viewCount}}</p>
