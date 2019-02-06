@@ -53,7 +53,7 @@ export class UseradminComponent implements OnInit {
 
   updateLocation() {
     const data = { location: this.db.geopoint(this.lat, this.lng)};
-    this.db.upsert(`location/${this.auth.afAuth.auth.currentUser.uid}`, data);
+    this.db.upsert(`users/${this.auth.afAuth.auth.currentUser.uid}`, data);
   }
 
   private getUserLocation() {
