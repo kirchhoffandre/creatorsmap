@@ -2,7 +2,7 @@
   <agm-marker *ngFor="let creator of creatorList$ | async; let i = index" [latitude]="creator.location.latitude" [longitude]="creator.location.longitude">
 
     <agm-info-window>
-      <h3>Howdy</h3>
+      <h3>Howdy {{creator.displayName}}</h3>
     </agm-info-window>
 
 

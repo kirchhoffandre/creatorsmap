@@ -19,7 +19,7 @@ export class HomemapComponent implements OnInit {
     lng = 7.809007;
 
   constructor(public db: FirestoreService, public afs: AngularFirestore) {
-    this.creatorList$ = this.db.col$('location');
+    this.creatorList$ = this.db.col$('users');
   }
 
   ngOnInit() {
