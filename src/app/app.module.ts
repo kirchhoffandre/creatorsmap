@@ -31,6 +31,13 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { YoutubeLoginComponent } from './components/login/youtube-login/youtube-login.component';
 import { UseradminComponent } from './components/user/useradmin/useradmin.component';
 import { FormsModule } from '@angular/forms';
+
+
+/* My Angular Google Maps */
+import { AgmCoreModule } from '@agm/core';
+import { HomemapComponent } from './components/maps/homemap/homemap.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +50,8 @@ import { FormsModule } from '@angular/forms';
     ErrorComponent,
     ContactsComponent,
     YoutubeLoginComponent,
-    UseradminComponent
+    UseradminComponent,
+    HomemapComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +65,10 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.googleMapsKey
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

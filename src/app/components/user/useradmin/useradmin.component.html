@@ -7,15 +7,26 @@
 
     <ul *ngIf="user$ | async as user">
       <li>{{user.displayName}}</li>
-      <li>{{ user$ | json }}</li>
     </ul>
 
 
     <label for="">Lat</label>  <input type="number" [(ngModel)]="lat">
     <label for="">Lng</label>  <input type="number" [(ngModel)]="lng">
     
+    <button  class="btn btn-danger" (click)="getUserLocation()">Get Current Location</button>
     <button  class="btn btn-danger" (click)="updateLocation()">Update Location</button>
-  
+    
+
+    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onMapClick($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng">
+
+        <agm-info-window>
+          <h3>Howdy {{user.displayName}}</h3>
+        </agm-info-window>
+
+
+      </agm-marker>
+    </agm-map>
 
     
   </div>

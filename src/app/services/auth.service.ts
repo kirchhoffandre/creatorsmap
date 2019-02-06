@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
+import { FirestoreService } from './firestore.service';
 
 
 declare var gapi: any;
@@ -24,7 +25,7 @@ export class AuthService {
 
 
 
-  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, public db: FirestoreService) {
     this.initClient();
     this.user$ = this.afAuth.authState.pipe(
       switchMap( user => {
@@ -120,6 +121,7 @@ export class AuthService {
       const userRef: AngularFirestoreDocument = this.afs.doc(`users/${this.afAuth.auth.currentUser.uid}`);
 
       userRef.set(events.result.items[0], { merge: true });
+
       this.router.navigate(['/useradmin']);
     } catch (error) {
       console.log(error);
