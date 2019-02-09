@@ -5,8 +5,14 @@ import {
   AngularFirestoreDocument,
   AngularFirestoreCollection} from '@angular/fire/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 
+
+
+interface Location {
+  latitude: number;
+  longitude: number;
+}
 
 
 @Component({
@@ -18,25 +24,28 @@ export class UseradminComponent implements OnInit {
 
   ref: AngularFirestoreCollection<any>;
   user$: Observable<any>;
-  location$: Observable<any>;
+  userLocation$: Observable<any>;
 
   lat;
   lng;
+
+  location: any;
   
 
   constructor(public db: FirestoreService, private afs: AngularFirestore, public auth: AuthService) {
     console.log(this.auth.afAuth.auth.currentUser.uid);
     // User Id as a placeholder: UCg6KPJWKHY3T-B1IyAoZ01g
     this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
-    this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`).subscribe(t => {
-      console.log(t);
-      this.lat = t.location.latitude;
-      this.lng = t.location.longitude;
-    });
+     this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
 
+     /*
+     .subscribe(result => {
+      this.lat = result.location.latitude;
+      this.lng = result.location.longitude;
+    });
+    */
   }
 
-  
 
   ngOnInit() {
     // Old Method to use the DB
@@ -56,16 +65,30 @@ export class UseradminComponent implements OnInit {
     this.db.upsert(`users/${this.auth.afAuth.auth.currentUser.uid}`, data);
   }
 
-  private getUserLocation() {
+  public getUserLocation() {
     /// locate the user
-      if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude);
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
+    console.log('test');
+      console.log(window);
+      console.log(navigator);
 
-      });
-    }
+      if(!navigator.geolocation){
+        console.log("this is my error");
+      } else {
+
+
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log("test inside the callback");
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+          this.updateLocation();
+        });
+
+      }
+
+
+
+        
+    
   }
   
 }

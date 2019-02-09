@@ -17,6 +17,16 @@ import * as firebase from 'firebase/app';
 type CollectionPredicate<T> = string | AngularFirestoreCollection<T>;
 type DocPredicate<T>        = string | AngularFirestoreDocument<T>;
 
+
+// Creating an Interface
+
+interface Location {
+  latitude: number;
+  longitude: number;
+
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
