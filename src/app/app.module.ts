@@ -36,7 +36,10 @@ import { FormsModule } from '@angular/forms';
 /* My Angular Google Maps */
 import { AgmCoreModule } from '@agm/core';
 import { HomemapComponent } from './components/maps/homemap/homemap.component';
-
+// Snazzy Maps Imports
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { CreatorsComponent } from './components/user/creators/creators.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { HomemapComponent } from './components/maps/homemap/homemap.component';
     ContactsComponent,
     YoutubeLoginComponent,
     UseradminComponent,
-    HomemapComponent
+    HomemapComponent,
+    CreatorsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ import { HomemapComponent } from './components/maps/homemap/homemap.component';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
-    })
+    }),
+    AgmSnazzyInfoWindowModule,
+    AgmJsMarkerClustererModule
   ],
   providers: [],
   bootstrap: [AppComponent]

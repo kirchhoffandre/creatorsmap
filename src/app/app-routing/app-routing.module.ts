@@ -8,6 +8,7 @@ import { MissionComponent } from '../components/native/misc/mission/mission.comp
 import { ErrorComponent } from '../components/native/misc/error/error.component';
 import { YoutubeLoginComponent } from '../components/login/youtube-login/youtube-login.component';
 import { UseradminComponent } from '../components/user/useradmin/useradmin.component';
+import { CreatorsComponent } from '../components/user/creators/creators.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyComponent },
   { path: 'login', component: YoutubeLoginComponent},
   { path: 'useradmin', component: UseradminComponent},
+  { path: 'creators', component: CreatorsComponent},
   { path: '**', component: ErrorComponent}
 ];
 

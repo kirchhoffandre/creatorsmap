@@ -1,0 +1,6 @@
+<div *ngFor="let creator of creatorList$ | async">
+    {{creator.snippet.title}}
+    <img [src]="creator.snippet.thumbnails.default.url" class="rounded-circle" alt="Creator Image">
+</div>
+
+
