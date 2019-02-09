@@ -28,7 +28,7 @@
     
 
     <agm-map [latitude]="user.location.latitude" [zoom]="6" [longitude]="user.location.longitude" (mapClick)="onMapClick($event)">
-      <agm-marker [latitude]="user.location.latitude" [longitude]="user.location.longitude">
+      <agm-marker [latitude]="user.location.latitude" [longitude]="user.location.longitude" [iconUrl]="'../../../assets/1customMarker.png'">
 
         <agm-info-window>
           <h3>Howdy {{user.displayName}}</h3>
