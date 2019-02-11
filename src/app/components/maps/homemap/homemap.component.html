@@ -1,22 +1,22 @@
 <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [styles]="mapStyle"  >
-    <agm-marker-cluster [minimumClusterSize]="2" [maxZoom]="10" imagePath="../../../assets/clusterMaker11">
-      <agm-marker *ngFor="let creator of creatorList$ | async; let i = index" 
-          [latitude]="creator.location.latitude" [longitude]="creator.location.longitude" [iconUrl]="'../../../assets/1customMarker.png'">
-            <agm-snazzy-info-window 
-            [maxWidth]="400" 
-            [maxHeight]="400" 
-            [closeWhenOthersOpen]="true" 
-            [closeOnMapClick]="true" 
-            [borderRadius]="'4px'"
-            >
-            
-          <ng-template>
-            <img [src]="creator.snippet.thumbnails.default.url" class="" alt="Creator Image">
-            <p class="">{{creator.snippet.title}}</p>
-          </ng-template>
-        </agm-snazzy-info-window>
-      </agm-marker>
-    </agm-marker-cluster>
+  <agm-marker-cluster [minimumClusterSize]="2" [maxZoom]="10" imagePath="../../../assets/clusterMaker11">
+    <agm-marker *ngFor="let creator of creatorList$ | async" 
+        [latitude]="creator.location.latitude" [longitude]="creator.location.longitude" [iconUrl]="'../../../assets/1customMarker.png'">
+          <agm-snazzy-info-window 
+          [maxWidth]="400" 
+          [maxHeight]="400" 
+          [closeWhenOthersOpen]="true" 
+          [closeOnMapClick]="true" 
+          [borderRadius]="'4px'"
+          >
+          
+        <ng-template>
+          <img [src]="creator.snippet.thumbnails.default.url" class="" alt="Creator Image">
+          <p class="">{{creator.snippet.title}}</p>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </agm-marker-cluster>
 </agm-map>
 
  

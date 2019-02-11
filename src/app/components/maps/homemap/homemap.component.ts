@@ -13,10 +13,9 @@ export class HomemapComponent implements OnInit {
   creatorList$: Observable<any>;
 
   // Zoom Level
-  zoom = 4;
-  // setting Default Locations
-  lat = 51.678418;
-  lng = 7.809007;
+  zoom = 2;
+  lat;
+  lng;
 
 
   public mapStyle = [
@@ -198,7 +197,7 @@ export class HomemapComponent implements OnInit {
 
 
   constructor(public db: FirestoreService, public afs: AngularFirestore) {
-    this.creatorList$ = this.db.col$('users');
+    this.creatorList$ = this.db.col$('users', ref => ref.where('locationSet', '==', true));
   }
 
   ngOnInit() {

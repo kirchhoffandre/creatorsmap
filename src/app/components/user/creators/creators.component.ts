@@ -13,7 +13,7 @@ export class CreatorsComponent implements OnInit {
   creatorList$: Observable<any>;
   
   constructor(public db: FirestoreService, public afs: AngularFirestore) {
-    this.creatorList$ = this.db.col$('users');
+    this.creatorList$ = this.db.col$('users', ref => ref.where('locationSet', '==', true));
   }
 
   ngOnInit() {

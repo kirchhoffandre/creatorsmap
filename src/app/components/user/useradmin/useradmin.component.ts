@@ -26,24 +26,210 @@ export class UseradminComponent implements OnInit {
   user$: Observable<any>;
   userLocation$: Observable<any>;
 
-  lat;
-  lng;
+  lat = 52.3;
+  lng = 12.4;
 
   location: any;
-  
+
+  draggable: true;
+
+  public mapStyle = [
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#e9e9e9"
+          },
+          {
+              "lightness": 17
+          }
+      ]
+  },
+  {
+      "featureType": "landscape",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#f5f5f5"
+          },
+          {
+              "lightness": 20
+          }
+      ]
+  },
+  {
+      "featureType": "road.highway",
+      "elementType": "geometry.fill",
+      "stylers": [
+          {
+              "color": "#ffffff"
+          },
+          {
+              "lightness": 17
+          }
+      ]
+  },
+  {
+      "featureType": "road.highway",
+      "elementType": "geometry.stroke",
+      "stylers": [
+          {
+              "color": "#ffffff"
+          },
+          {
+              "lightness": 29
+          },
+          {
+              "weight": 0.2
+          }
+      ]
+  },
+  {
+      "featureType": "road.arterial",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#ffffff"
+          },
+          {
+              "lightness": 18
+          }
+      ]
+  },
+  {
+      "featureType": "road.local",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#ffffff"
+          },
+          {
+              "lightness": 16
+          }
+      ]
+  },
+  {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#f5f5f5"
+          },
+          {
+              "lightness": 21
+          }
+      ]
+  },
+  {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#dedede"
+          },
+          {
+              "lightness": 21
+          }
+      ]
+  },
+  {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+          {
+              "visibility": "on"
+          },
+          {
+              "color": "#ffffff"
+          },
+          {
+              "lightness": 16
+          }
+      ]
+  },
+  {
+      "elementType": "labels.text.fill",
+      "stylers": [
+          {
+              "saturation": 36
+          },
+          {
+              "color": "#333333"
+          },
+          {
+              "lightness": 40
+          }
+      ]
+  },
+  {
+      "elementType": "labels.icon",
+      "stylers": [
+          {
+              "visibility": "off"
+          }
+      ]
+  },
+  {
+      "featureType": "transit",
+      "elementType": "geometry",
+      "stylers": [
+          {
+              "color": "#f2f2f2"
+          },
+          {
+              "lightness": 19
+          }
+      ]
+  },
+  {
+      "featureType": "administrative",
+      "elementType": "geometry.fill",
+      "stylers": [
+          {
+              "color": "#fefefe"
+          },
+          {
+              "lightness": 20
+          }
+      ]
+  },
+  {
+      "featureType": "administrative",
+      "elementType": "geometry.stroke",
+      "stylers": [
+          {
+              "color": "#fefefe"
+          },
+          {
+              "lightness": 17
+          },
+          {
+              "weight": 1.2
+          }
+      ]
+  }
+  ];
+
 
   constructor(public db: FirestoreService, private afs: AngularFirestore, public auth: AuthService) {
     console.log(this.auth.afAuth.auth.currentUser.uid);
     // User Id as a placeholder: UCg6KPJWKHY3T-B1IyAoZ01g
-    this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
-     this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
+    this.getUserLocation();
 
-     /*
-     .subscribe(result => {
-      this.lat = result.location.latitude;
-      this.lng = result.location.longitude;
-    });
-    */
+    this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
+    this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
+    
+    this.userLocation$.subscribe(res => {
+        console.log(res);
+            if(res.location.latitude === '') {
+                this.lat = 52.3;
+                this.lng = 12.4;
+            } else {
+                this.lat = res.location.latitude;
+                this.lng = res.location.longitude;
+            } 
+        });
+
   }
 
 
@@ -51,18 +237,23 @@ export class UseradminComponent implements OnInit {
     // Old Method to use the DB
     // this.ref = this.afs.collection('items');
     // this.items = this.ref.valueChanges();
+ 
   }
 
 
-  onMapClick(event) {
-    console.log(event);
-    this.lat = event.coords.lat;
-    this.lng = event.coords.lng;
+  onMapClick($event) {
+    console.log($event);
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
   }
 
   updateLocation() {
-    const data = { location: this.db.geopoint(this.lat, this.lng)};
+    const data = { location: this.db.geopoint(this.lat, this.lng), locationSet: true};
     this.db.upsert(`users/${this.auth.afAuth.auth.currentUser.uid}`, data);
+  }
+
+  markerDragEnd($event:any){
+    console.log($event);
   }
 
   public getUserLocation() {
@@ -84,11 +275,6 @@ export class UseradminComponent implements OnInit {
         });
 
       }
-
-
-
-        
-    
   }
   
 }
