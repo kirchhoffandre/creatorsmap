@@ -6,6 +6,7 @@ import {
   AngularFirestoreCollection} from '@angular/fire/firestore';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Observable} from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -211,24 +212,33 @@ export class UseradminComponent implements OnInit {
   ];
 
 
-  constructor(public db: FirestoreService, private afs: AngularFirestore, public auth: AuthService) {
-    console.log(this.auth.afAuth.auth.currentUser.uid);
+  constructor(public db: FirestoreService, private afs: AngularFirestore, public auth: AuthService, private router: Router) {
+    //console.log(this.auth.afAuth.auth.currentUser.uid);
     // User Id as a placeholder: UCg6KPJWKHY3T-B1IyAoZ01g
+    
+    this.auth.user$.subscribe(res => {
+        if (res) {
+            this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
+            this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
+            
+            this.userLocation$.subscribe(rest => {
+                console.log(rest);
+                    if (rest.location.latitude === '') {
+                        this.lat = 52.3;
+                        this.lng = 12.4;
+                    } else {
+                        this.lat = rest.location.latitude;
+                        this.lng = rest.location.longitude;
+                    }
+            });
+        } else {
+            return this.router.navigate(['/']);
+        }
+    });
+    
     this.getUserLocation();
 
-    this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
-    this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
-    
-    this.userLocation$.subscribe(res => {
-        console.log(res);
-            if(res.location.latitude === '') {
-                this.lat = 52.3;
-                this.lng = 12.4;
-            } else {
-                this.lat = res.location.latitude;
-                this.lng = res.location.longitude;
-            } 
-        });
+   
 
   }
 
