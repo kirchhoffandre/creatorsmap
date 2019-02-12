@@ -28,6 +28,7 @@
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "firebase": "^5.7.3",
+    "jquery": "^3.3.1",
     "js-marker-clusterer": "^1.0.0",
     "rxjs": "~6.3.3",
     "snazzy-info-window": "^1.1.1",

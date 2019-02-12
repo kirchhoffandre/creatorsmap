@@ -24,7 +24,6 @@ export class AuthService {
 
 
 
-
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, public db: FirestoreService) {
     this.initClient();
     this.user$ = this.afAuth.authState.pipe(
@@ -133,9 +132,24 @@ export class AuthService {
   }
 
 
-  getAuthStatus(){
+  getAuthStatus() {
     return this.afAuth.auth.currentUser.uid;
   }
+
+  get authenticated(): boolean {
+    return this.afAuth !== null;
+  }
+
+  get currentUser(): any {
+    return this.authenticated ? this.afAuth.auth : null;
+  }
+
+  get currentUserId(): string {
+    return this.authenticated ? this.afAuth.auth.currentUser.uid : '';
+  }
+
+
+
 
 
 }
