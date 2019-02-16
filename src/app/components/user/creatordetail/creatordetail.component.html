@@ -1,0 +1,42 @@
+
+  
+  <div *ngIf="creator$ | async as user">
+
+    <div class="userprofile">
+      <img [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
+      <div class="row">
+        <div class="col-sm col-2">
+          <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
+        </div>
+        <div class="col-sm col-10">
+          <div>
+            <h3>{{user?.snippet.title}}</h3>
+            <p>{{user?.snippet.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+  <!-- 
+    <agm-map [latitude]="lat" [zoom]="6" [longitude]="lng" [styles]="mapStyle" (mapClick)="onMapClick($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'../../../assets/1customMarker.png'">
+  
+        <agm-snazzy-info-window [maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true" [closeOnMapClick]="true"
+          [borderRadius]="'4px'">
+  
+          <ng-template>
+            <img [src]="user.snippet.thumbnails.default.url" class="" alt="Creator Image">
+            <p class="">{{user.snippet.title}}</p>
+          </ng-template>
+        </agm-snazzy-info-window>
+  
+      </agm-marker>
+    </agm-map>
+  
+  -->
+  
+  </div>
+  
+
+  

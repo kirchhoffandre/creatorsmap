@@ -1,1 +1,22 @@
 .card {display:inline-block;}
+
+
+
+a:hover {
+    cursor: pointer;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.marginTop {
+    margin-top: 20px;
+}

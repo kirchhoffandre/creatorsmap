@@ -1,6 +1,15 @@
-<div *ngFor="let creator of creatorList$ | async">
-    {{creator.snippet.title}}
-    <img [src]="creator.snippet.thumbnails.default.url" class="rounded-circle" alt="Creator Image">
+<div class="container marginTop">
+        <div class="row">
+                <div *ngFor="let creator of creatorList$ | async" class="col">
+                  <div class="row">
+                    <img [src]="creator.snippet.thumbnails.default.url" [routerLink]="['/creator', creator.uid]" class="rounded-circle"
+                      alt="Creator Image">
+                  </div>
+                  <div>
+                      <p class="text-center" [routerLink]="['/creator', creator.uid]">{{creator.snippet.title}}</p>
+                  </div>
+              
+                </div>
+              </div>
+              
 </div>
-
-

@@ -11,8 +11,8 @@
           >
           
         <ng-template>
-          <img [src]="creator.snippet.thumbnails.default.url" class="" alt="Creator Image">
-          <p class="">{{creator.snippet.title}}</p>
+          <img [src]="creator.snippet.thumbnails.default.url"  [routerLink]="['/creator', creator.uid]" class="" alt="Creator Image">
+          <p class="" [routerLink]="['/creator', creator.uid]">{{creator.snippet.title}}</p>
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>

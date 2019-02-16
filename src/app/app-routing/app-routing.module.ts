@@ -9,6 +9,7 @@ import { ErrorComponent } from '../components/native/misc/error/error.component'
 import { YoutubeLoginComponent } from '../components/login/youtube-login/youtube-login.component';
 import { UseradminComponent } from '../components/user/useradmin/useradmin.component';
 import { CreatorsComponent } from '../components/user/creators/creators.component';
+import { CreatordetailComponent } from '../components/user/creatordetail/creatordetail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: YoutubeLoginComponent},
   { path: 'useradmin', component: UseradminComponent},
   { path: 'creators', component: CreatorsComponent},
+  { path: 'creator/:id', component: CreatordetailComponent},
   { path: '**', component: ErrorComponent}
 ];
 

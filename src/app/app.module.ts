@@ -40,6 +40,7 @@ import { HomemapComponent } from './components/maps/homemap/homemap.component';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { CreatorsComponent } from './components/user/creators/creators.component';
+import { CreatordetailComponent } from './components/user/creatordetail/creatordetail.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CreatorsComponent } from './components/user/creators/creators.component
     YoutubeLoginComponent,
     UseradminComponent,
     HomemapComponent,
-    CreatorsComponent
+    CreatorsComponent,
+    CreatordetailComponent
   ],
   imports: [
     BrowserModule,
