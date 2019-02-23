@@ -1,6 +1,6 @@
 <div *ngIf="creator$ | async as user">
   <div class="userprofile">
-    <img [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
+    <img *ngIf="user.brandingSettings.image.bannerImageUrl != 'http://s.ytimg.com/yts/img/channels/c4/default_banner-vfl7DRgTn.png'" [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
     <div class="row">
       <div class="col-sm col-2">
         <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
@@ -12,6 +12,7 @@
         </div>
       </div>
     </div>
+    <a  class="btn btn-danger" target="_blank" href="https://www.youtube.com/channel/{{user.id}}">YouTube Channel</a>
   </div>
 
   <hr>
@@ -37,17 +38,24 @@
     <div *ngFor="let v of videoList">
       <div class="card">
         <a href="https://www.youtube.com/watch?v={{v.videoId}}" target="_blank">
-          <img src="{{v.thumbnailUrl}}" class="card-img-top" alt="...">
+          <img src="{{v.thumbnailUrl}}" class="card-img-top cardImage" alt="...">
         </a>
 
         <div class="card-body">
-          <h5 class="card-title">{{v.title}}</h5>
-          <a href="https://www.youtube.com/channel/{{v.channelId}}" target="_blank">
-            {{v.channelTitle}}
-          </a>
+          <h5 class="card-title title">{{v.title}}</h5>
+         
+
+          <small class="text-muted">
+              <a href="https://www.youtube.com/channel/{{v.channelId}}"  target="_blank">
+                {{v.channelTitle}}
+              </a>
+            </small>
         </div>
       </div>
     </div>
   </div>
-  
+
+
+
+
 </div>

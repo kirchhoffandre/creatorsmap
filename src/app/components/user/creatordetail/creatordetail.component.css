@@ -4,10 +4,17 @@ agm-map {
 
 .card {display:inline-block;}
 
+.cardImage {
+    width: 268px;
+    height: 180px;
+}
+
 .title {
     font-size: 0.85rem;
     font-weight: bold;
 }
+
+
 
 .channel {
     font-size: 0.75rem;

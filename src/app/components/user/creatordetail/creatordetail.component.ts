@@ -219,7 +219,7 @@ export class CreatordetailComponent implements OnInit {
           // Retrieve Videos & Details of Creator
           this.youtubeService.getChannel2(this.creatorId).subscribe(data2 => {
             console.log(data2);
-            this.videoList = data2.items.map(item => {
+            this.videoList = data2['items'].map(item => {
               return new Video(
                 item.id.videoId,
                 item.snippet.title,
