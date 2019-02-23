@@ -27,8 +27,8 @@ export class UseradminComponent implements OnInit {
   user$: Observable<any>;
   userLocation$: Observable<any>;
 
-  lat = 52.3;
-  lng = 12.4;
+  lat;
+  lng;
 
   location: any;
 
@@ -213,30 +213,25 @@ export class UseradminComponent implements OnInit {
 
 
   constructor(public db: FirestoreService, private afs: AngularFirestore, public auth: AuthService, private router: Router) {
-    //console.log(this.auth.afAuth.auth.currentUser.uid);
+    // console.log(this.auth.afAuth.auth.currentUser.uid);
     // User Id as a placeholder: UCg6KPJWKHY3T-B1IyAoZ01g
     
     this.auth.user$.subscribe(res => {
         if (res) {
             this.user$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
-            this.userLocation$ = this.db.doc$(`location/${this.auth.afAuth.auth.currentUser.uid}`);
-            
+            this.userLocation$ = this.db.doc$(`users/${this.auth.afAuth.auth.currentUser.uid}`);
+            console.log(this.auth.afAuth.auth.currentUser.uid);
             this.userLocation$.subscribe(rest => {
-                console.log(rest);
-                    if (rest.location.latitude === '') {
-                        this.lat = 52.3;
-                        this.lng = 12.4;
-                    } else {
+                        console.log(rest);
                         this.lat = rest.location.latitude;
                         this.lng = rest.location.longitude;
-                    }
             });
         } else {
             return this.router.navigate(['/']);
         }
     });
     
-    this.getUserLocation();
+    //this.getUserLocation();
 
    
 
@@ -244,10 +239,6 @@ export class UseradminComponent implements OnInit {
 
 
   ngOnInit() {
-    // Old Method to use the DB
-    // this.ref = this.afs.collection('items');
-    // this.items = this.ref.valueChanges();
- 
   }
 
 
@@ -259,6 +250,7 @@ export class UseradminComponent implements OnInit {
 
   updateLocation() {
     const data = { location: this.db.geopoint(this.lat, this.lng), locationSet: true};
+    console.log(data);
     this.db.upsert(`users/${this.auth.afAuth.auth.currentUser.uid}`, data);
   }
 
@@ -286,5 +278,5 @@ export class UseradminComponent implements OnInit {
 
       }
   }
-  
+
 }

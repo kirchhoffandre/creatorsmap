@@ -4,9 +4,7 @@
 
 
 <div *ngIf="user$ | async as user">
-  <h3>Welcome to your Admin Panel!</h3>
-
-  <div class="userprofile">
+   <div class="userprofile">
     <img [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
     <div class="row">
       <div class="col-sm col-2">
@@ -21,6 +19,8 @@
     </div>
   </div>
 
+
+  <h3>Welcome to your Admin Panel!</h3>
   <h3>Update Your Location</h3>
   <p>Drag Maker to your desired location and save it!</p>
   <button class="btn btn-danger" (click)="updateLocation()">Save Location</button>

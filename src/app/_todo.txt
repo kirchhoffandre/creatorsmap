@@ -1,7 +1,16 @@
 /*
 
-=> implement dummy pictures for channel
+----- Bugs ------
 
+
+
+----- Ideas -----
 => Moritz Sagt, Embed the videos
+
+
+---- Features ----
+> messaging service
+> instagram Following service
+> Grouping of Creators?
 
 */
