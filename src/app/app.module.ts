@@ -36,11 +36,15 @@ import { FormsModule } from '@angular/forms';
 /* My Angular Google Maps */
 import { AgmCoreModule } from '@agm/core';
 import { HomemapComponent } from './components/maps/homemap/homemap.component';
-// Snazzy Maps Imports
+
+/* Snazzy Maps Imports */
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { CreatorsComponent } from './components/user/creators/creators.component';
 import { CreatordetailComponent } from './components/user/creatordetail/creatordetail.component';
+
+/* HTTP */
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -65,7 +69,7 @@ import { CreatordetailComponent } from './components/user/creatordetail/creatord
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    AppRoutingModule, 
+    AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -76,7 +80,8 @@ import { CreatordetailComponent } from './components/user/creatordetail/creatord
       apiKey: environment.googleMapsKey
     }),
     AgmSnazzyInfoWindowModule,
-    AgmJsMarkerClustererModule
+    AgmJsMarkerClustererModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

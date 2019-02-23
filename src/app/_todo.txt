@@ -2,4 +2,6 @@
 
 => implement dummy pictures for channel
 
+=> Moritz Sagt, Embed the videos
+
 */

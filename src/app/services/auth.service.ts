@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { switchMap } from 'rxjs/operators';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 import { FirestoreService } from './firestore.service';
 
 
