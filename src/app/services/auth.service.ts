@@ -5,7 +5,7 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, first } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { FirestoreService } from './firestore.service';
 
@@ -131,6 +131,10 @@ export class AuthService {
 
   }
 
+  // Function converts the User Observable to a Promise. Easier to write data and we can use async/await
+  getUser() {
+    return this.user$.pipe(first()).toPromise();
+  }
 
   getAuthStatus() {
     return this.afAuth.auth.currentUser.uid;

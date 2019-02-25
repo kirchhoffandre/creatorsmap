@@ -10,6 +10,7 @@ import { YoutubeLoginComponent } from '../components/login/youtube-login/youtube
 import { UseradminComponent } from '../components/user/useradmin/useradmin.component';
 import { CreatorsComponent } from '../components/user/creators/creators.component';
 import { CreatordetailComponent } from '../components/user/creatordetail/creatordetail.component';
+import { MessagingFormComponent } from '../components/messaging/messaging-form/messaging-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyComponent },
   { path: 'login', component: YoutubeLoginComponent},
   { path: 'useradmin', component: UseradminComponent},
+  { path: 'messaging-form', component: MessagingFormComponent},
   { path: 'creators', component: CreatorsComponent},
   { path: 'creator/:id', component: CreatordetailComponent},
   { path: '**', component: ErrorComponent}

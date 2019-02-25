@@ -1,0 +1,19 @@
+
+<form *ngIf="destroyForm" class="" [formGroup]="myForm" [hidden]="success" (ngSubmit)="submitHanlder()">
+    <div class="form-group form-control-sm">
+      <textarea class="form-control form-control-sm" formControlName="textarea" placeholder="Send a Message!" rows="2"></textarea>
+    </div>
+    
+    
+    <span *ngIf="textarea.errors?.min">
+      That is a short text
+    </span>
+    <div class="form-group form-control-sm">
+      <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid && textarea.invalid">Message</button>
+      <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+  <div *ngIf="success" class="notification is-success bg-success">
+    Yay! Message Sent!
+  </div>
+  

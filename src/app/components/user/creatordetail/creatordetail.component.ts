@@ -19,6 +19,9 @@ export class CreatordetailComponent implements OnInit {
   lat: any;
   lng: any;
 
+  // Form Fields
+  showMForm = false;
+
   public mapStyle = [
     {
       "featureType": "water",
@@ -235,6 +238,11 @@ export class CreatordetailComponent implements OnInit {
       })
 
     );
+  }
+
+
+  openMessagingForm() {
+    this.showMForm = !this.showMForm;
   }
 
 }

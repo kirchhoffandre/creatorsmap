@@ -45,6 +45,8 @@ import { CreatordetailComponent } from './components/user/creatordetail/creatord
 
 /* HTTP */
 import { HttpClientModule } from '@angular/common/http';
+import { MessagingFormComponent } from './components/messaging/messaging-form/messaging-form.component';
+import { MessagingListComponent } from './components/messaging/messaging-list/messaging-list.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { HttpClientModule } from '@angular/common/http';
     UseradminComponent,
     HomemapComponent,
     CreatorsComponent,
-    CreatordetailComponent
+    CreatordetailComponent,
+    MessagingFormComponent,
+    MessagingListComponent
   ],
   imports: [
     BrowserModule,
