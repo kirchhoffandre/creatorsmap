@@ -11,6 +11,7 @@ import { UseradminComponent } from '../components/user/useradmin/useradmin.compo
 import { CreatorsComponent } from '../components/user/creators/creators.component';
 import { CreatordetailComponent } from '../components/user/creatordetail/creatordetail.component';
 import { MessagingFormComponent } from '../components/messaging/messaging-form/messaging-form.component';
+import { MessagingListComponent } from '../components/messaging/messaging-list/messaging-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'messaging-form', component: MessagingFormComponent},
   { path: 'creators', component: CreatorsComponent},
   { path: 'creator/:id', component: CreatordetailComponent},
+  { path: 'messageList', component: MessagingListComponent},
   { path: '**', component: ErrorComponent}
 ];
 

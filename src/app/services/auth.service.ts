@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { FirestoreService } from './firestore.service';
 declare var gapi: any;
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,14 +23,29 @@ export class AuthService {
   user$: Observable<firebase.User>;
   channelID: string;
 
+  userObject: object = {
+    userId: '',
+    userName: '',
+    userEmail: '',
+    userBio: ''
+  };
 
+  public loggedIn = new BehaviorSubject<boolean>(false);
 
+ 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, public db: FirestoreService) {
     this.initClient();
     this.user$ = this.afAuth.authState.pipe(
       switchMap( user => {
         if(user) {
+          this.userObject = {
+            userId: user.uid,
+            userName: user.displayName,
+            userEmail: user.email,
+            createdAt: new Date()
+          };
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          
         } else {
           return of(null);
         }
@@ -39,7 +55,9 @@ export class AuthService {
     
   }
 
-
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
 
   initClient() {
     gapi.load('client', () => {
@@ -153,6 +171,9 @@ export class AuthService {
   }
 
 
+  getUserObject() {
+    return this.userObject;
+  }
 
 
 

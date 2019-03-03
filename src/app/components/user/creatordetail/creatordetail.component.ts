@@ -5,6 +5,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { YoutubeServiceService } from 'src/app/services/youtube-service.service';
 import { Video } from 'src/app/models/video.model';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-creatordetail',
@@ -201,7 +202,10 @@ export class CreatordetailComponent implements OnInit {
 
 
 
-  constructor(public db: FirestoreService, private route: ActivatedRoute, private youtubeService: YoutubeServiceService) { }
+
+  constructor(public auth: AuthService, public db: FirestoreService, private route: ActivatedRoute, private youtubeService: YoutubeServiceService) { 
+
+  }
 
   ngOnInit() {
 

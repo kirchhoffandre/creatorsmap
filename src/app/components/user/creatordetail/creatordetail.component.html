@@ -13,13 +13,13 @@
       </div>
     </div>
     <a  class="btn btn-danger" target="_blank" href="https://www.youtube.com/channel/{{user.id}}">YouTube Channel</a>
-    <button class="btn btn-danger" (click)="openMessagingForm()" >Message</button>
+    <button *ngIf="(auth.isLoggedIn)" class="btn btn-danger" (click)="openMessagingForm()" >Message</button>
   </div>
-
 
   <app-messaging-form *ngIf="showMForm"></app-messaging-form>
 
   <hr>
+
 
   <agm-map [latitude]="lat" [zoom]="6" [longitude]="lng" [styles]="mapStyle" (mapClick)="onMapClick($event)">
     <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'../../../assets/1customMarker.png'">
