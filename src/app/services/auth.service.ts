@@ -22,6 +22,8 @@ export class AuthService {
 
   user$: Observable<firebase.User>;
   channelID: string;
+  userId: string;
+  userName: string;
 
   userObject: object = {
     userId: '',
@@ -53,6 +55,18 @@ export class AuthService {
     );
 
     
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+  getUserName() {
+    return this.userName;
+  }
+
+  getUserObject() {
+    return this.userObject;
   }
 
   get isLoggedIn() {
@@ -170,10 +184,10 @@ export class AuthService {
     return this.authenticated ? this.afAuth.auth.currentUser.uid : '';
   }
 
+  
 
-  getUserObject() {
-    return this.userObject;
-  }
+
+
 
 
 

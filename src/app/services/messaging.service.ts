@@ -28,4 +28,22 @@ export class MessagingService {
   }
 
 
+  archiveMessage(id) {
+    const messageRef = this.db.doc(`messages/${id}`);
+    const data = {
+      archived: true,
+      updatedOn: new Date()
+    };
+    return messageRef.update(data);
+  }
+
+  toInbox(id) {
+    const messageRef = this.db.doc(`messages/${id}`);
+    const data = {
+      archived: false,
+      updatedOn: new Date()
+    };
+    return messageRef.update(data);
+  }
+
 }

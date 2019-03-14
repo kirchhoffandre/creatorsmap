@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'messaging-form', component: MessagingFormComponent},
   { path: 'creators', component: CreatorsComponent},
   { path: 'creator/:id', component: CreatordetailComponent},
-  { path: 'messageList', component: MessagingListComponent},
+  { path: 'messagelist', component: MessagingListComponent},
   { path: '**', component: ErrorComponent}
 ];
 
