@@ -74,4 +74,11 @@ export class MessagingListComponent implements OnInit {
   }
 
 
+  replyActive(uId, mId) {
+    console.log('click');
+    console.log(uId);
+    console.log(mId);
+  }
+
+
 }
