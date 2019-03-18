@@ -2,12 +2,19 @@
   <div class="userprofile">
     <img *ngIf="user.brandingSettings.image.bannerImageUrl != 'http://s.ytimg.com/yts/img/channels/c4/default_banner-vfl7DRgTn.png'" [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
     <div class="row">
-      <div class="col-sm col-2">
-        <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
+      <div class="col-5">
+        <div class="row">
+          <div class="col-4">
+              <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
+          </div>
+          <div class="col-8">
+              <h3>{{user?.snippet.title}}</h3>
+              <p>{{user?.statistics.subscriberCount}} subscribers</p>
+          </div>
+        </div>
       </div>
-      <div class="col-sm col-10">
+      <div class="col-7">
         <div>
-          <h3>{{user?.snippet.title}}</h3>
           <p>{{user?.snippet.description}}</p>
         </div>
       </div>

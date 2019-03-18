@@ -1,16 +1,11 @@
-<div class="container">
-
-</div> <!-- /container -->
-
-
 <div *ngIf="user$ | async as user">
-   <div class="userprofile">
+  <div class="userprofile">
     <img [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
     <div class="row">
-      <div class="col-sm col-2">
+      <div class="col-2">
         <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
       </div>
-      <div class="col-sm col-10">
+      <div class="col-10">
         <div>
           <h3>{{user?.snippet.title}}</h3>
           <p>{{user?.snippet.description}}</p>
@@ -20,7 +15,8 @@
   </div>
 
 
-  <h3>Welcome to your Admin Panel!</h3>
+  <hr>
+  
   <h3>Update Your Location</h3>
   <p>Drag Maker to your desired location and save it!</p>
   <button class="btn btn-danger" (click)="updateLocation()">Save Location</button>
@@ -46,58 +42,3 @@
 
 </div>
 
-
-<!--
-   
-
-      [markerDraggable]="draggable"
-          (dragEnd)="markerDragEnd($event)"
-  -->
-
-
-<!--
-    <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [styles]="mapStyle" (mapClick)="onMapClick($event)" >
-      <agm-marker-cluster [minimumClusterSize]="2" [maxZoom]="10" imagePath="../../../assets/clusterMaker11">
-        <agm-marker  
-            [latitude]="lat" [longitude]="lng" [iconUrl]="'../../../assets/1customMarker.png'">
-              <agm-snazzy-info-window 
-              [maxWidth]="400" 
-              [maxHeight]="400" 
-              [closeWhenOthersOpen]="true" 
-              [closeOnMapClick]="true" 
-              [borderRadius]="'4px'"
-              >
-              
-            <ng-template>
-              <img [src]="user.snippet.thumbnails.default.url" class="" alt="User Image">
-              <p class="">{{user.snippet.title}}</p>
-            </ng-template>
-          </agm-snazzy-info-window>
-        </agm-marker>
-      </agm-marker-cluster>
-    </agm-map>
-
-    
-    <agm-map [zoom]="4" [longitude]="6" [disableDefaultUI]="false" [styles]="mapStyle"  >
-   
-      <agm-marker 
-          [latitude]="user.location.latitude" [longitude]="user.location.longitude" 
-          [iconUrl]="'../../../assets/1customMarker.png'"
-        >
-            <agm-snazzy-info-window 
-            [maxWidth]="400" 
-            [maxHeight]="400" 
-            [closeWhenOthersOpen]="true" 
-            [closeOnMapClick]="true" 
-            [borderRadius]="'4px'"
-            >
-            
-          <ng-template>
-            <img [src]="user.snippet.thumbnails.default.url" class="" alt="Creator Image">
-            <p class="">{{user.snippet.title}}</p>
-          </ng-template>
-        </agm-snazzy-info-window>
-      </agm-marker>
-    
-  </agm-map>
-  -->
