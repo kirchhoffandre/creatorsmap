@@ -2,3 +2,72 @@ agm-map {
     height: 600px;
 }
 
+.save-location {
+    margin-bottom: 10px;
+}
+
+.detail-banner {
+    width: 100%;
+}
+
+.creator-profile-detail {
+    margin-top: 18px;
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .creator-avatar {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+
+.creator-name {
+    position: absolute;
+    right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    top: 50%;
+    transform: translate(-10%, -50%);
+}
+
+@media(max-width: 991px) {
+    .creator-name h3 {
+        font-size: 18px;
+    }
+}
+
+.creator-name h3,
+.creator-name p {
+    margin-bottom: 0 !important;
+}
+
+@media(min-width: 992px) {
+    .creator-description {
+        position: absolute;
+        padding-right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        word-break: break-all;
+        text-align: justify;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .creator-description {
+        word-break: break-all;
+        margin: 0;
+        text-align: justify;
+        min-height: 40px;
+    }
+}
+
+.creator-name h3 {
+    word-break: break-all;
+    font-size: 22px;
+}
+
+.map-avatar {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

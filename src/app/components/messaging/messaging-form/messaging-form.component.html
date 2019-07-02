@@ -1,23 +1,24 @@
-
 <form *ngIf="destroyForm" class="" [formGroup]="myForm" [hidden]="success" (ngSubmit)="submitHandler()">
-    
-  <div class="form-group form-control-sm">
-    <input class="form-control form-control-sm" formControlName="title" placeholder="Title">
+  <div class="col-12">
+    <div class="row">
+      <div class="form-group col-12">
+        <input class="form-control" formControlName="title" placeholder="Title">
+      </div>
+      <div class="form-group col-12">
+        <textarea class="form-control" formControlName="textarea" placeholder="Send a Message!" rows="2"></textarea>
+      </div>
+      <span *ngIf="textarea.errors?.min">
+        That is a short text
+      </span>
+      <div class="form-group col-12">
+        <button type="submit" class="btn btn-danger" [disabled]="myForm.invalid">Message</button>
+        <button class="btn btn-danger btn-cancel" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
   </div>
-    <div class="form-group form-control-sm">
-      <textarea class="form-control form-control-sm" formControlName="textarea" placeholder="Send a Message!" rows="2"></textarea>
-    </div>
-    
-    
-    <span *ngIf="textarea.errors?.min">
-      That is a short text
-    </span>
-    <div class="form-group form-control-sm">
-      <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Message</button>
-      <button class="btn btn-primary" (click)="cancel()">Cancel</button>
-    </div>
-  </form>
-  <div *ngIf="success" class="notification is-success bg-success">
+</form>
+<div *ngIf="success" class="col-12">
+  <div class="alert alert-success">
     Yay! Message Sent!
   </div>
-  
+</div>

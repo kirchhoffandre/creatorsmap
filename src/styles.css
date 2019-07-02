@@ -1,17 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+/* font face */
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('./assets/fonts/proximanova-regular_2-webfont.woff') format('woff'), url('./assets/fonts/proximanova-regular_2-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
-/*
-* { border: 1px solid black; };
-*/
+@font-face {
+  font-family: 'ProximaNova-Semibold';
+  src: url('./assets/fonts/proximanova-semibold_2-webfont.woff') format('woff'), url('./assets/fonts/proximanova-semibold_2-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ProximaNovaA-Regular';
+  src: url('./assets/fonts/Proxima-Nova-Alt-Regular-webfont.woff') format('woff'), url('./assets/fonts/Proxima-Nova-Alt-Regular-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/* font face */
 
 html {
-  font-size: 14px;
+  font-family: 'Proximanova-Regular' !important;
+  font-size: 14px !important;
 }
 
 main {
-
   position: relative;
 }
 
@@ -22,9 +40,9 @@ main {
   }
 }
 
-.container {
+/* .container {
   max-width: 960px;
-}
+} */
 
 .pricing-header {
   max-width: 700px;
@@ -34,11 +52,12 @@ main {
   min-width: 220px;
 }
 
+.marginTop {
+  margin-bottom: 20px;
+}
+
 a:hover {
   cursor: pointer;
 }
 
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/

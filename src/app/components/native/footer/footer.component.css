@@ -1,0 +1,33 @@
+/* @media (min-width: 380px) and (max-width: 406px) {
+    footer h5 {
+        font-size: 16px;
+    }
+} */
+
+/* .footer-links li a::before {
+    content: "\f0c8";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    line-height: 25px;
+}
+
+.footer-links li a:hover:before {
+    content: "\f0c8";
+    font-weight: 900;
+}
+
+.footer-links li a {
+    font-size: 12px;
+}
+
+.footer-links li a:hover {
+    text-decoration: none;
+} */
+
+.footer-links li {
+    line-height: 33.5px;
+    margin-bottom: 14px;
+}

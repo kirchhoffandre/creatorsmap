@@ -1,16 +1,20 @@
 <div class="container marginTop">
-    <p class="lead text-center">Say Hi to our newest members!</p>
-        <div class="row">
-                <div *ngFor="let creator of creatorList$ | async" class="col">
-                  <div class="row">
-                    <img [src]="creator.snippet.thumbnails.default.url" [routerLink]="['/creator', creator.uid]" class="rounded-circle"
-                      alt="Creator Image">
-                  </div>
-                  <div>
-                      <p class="text-center" [routerLink]="['/creator', creator.uid]">{{creator.snippet.title}}</p>
-                  </div>
-              
-                </div>
-              </div>
-              
+  <p class="lead text-center">Say Hi to our newest members!</p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div *ngFor="let creator of creatorList$ | async" class="col-lg-2 col-md-4 col-sm-4 col-4">
+          <div class="row">
+            <div class="avatar">
+              <img [src]="creator.snippet.thumbnails.default.url" [routerLink]="['/creator', creator.uid]" class="rounded-circle"
+              alt="Creator Image">
+            </div>
+          </div>
+          <div class="user-name">
+              <p class="text-center" [routerLink]="['/creator', creator.uid]">{{creator.snippet.title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,4 @@
-
-<nav class="navbar navbar-expand-md bg-white border-bottom shadow-sm marginTop">
+<nav class="navbar navbar-expand-md bg-white border-bottom shadow-sm">
     <a class="navbar-brand" routerLink="/">CREATORSMAP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,16 +12,17 @@
       </ul>
       <ul *ngIf="!(auth.user$ | async)" class="navbar-nav">
           <li class="nav-item active">
-              <a class="btn btn-danger" (click)="auth.login()">YouTube Login</a>
+              <button class="btn btn-danger" (click)="auth.login()">YouTube Login</button>
           </li>
       </ul>
       <ul *ngIf="(auth.user$ | async) as user" class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.displayName}}</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bozo Krkeljas</a> -->
+            <div class="dropdown-menu admin-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" routerLink="/useradmin">Admin Page</a>
               <a class="dropdown-item" href="/messagelist">Messages</a>
-              <a  class="dropdown-item btn btn-danger bg-danger" (click)="auth.logout()">Logout</a>
+              <a class="dropdown-item" (click)="auth.logout()">Logout</a>
             </div>
           </li>
 

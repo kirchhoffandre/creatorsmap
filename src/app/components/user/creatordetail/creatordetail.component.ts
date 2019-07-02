@@ -224,6 +224,7 @@ export class CreatordetailComponent implements OnInit {
 
           console.log(this.lat);
           // Retrieve Videos & Details of Creator
+          /* Disable call for now */
           this.youtubeService.getChannel2(this.creatorId).subscribe(data2 => {
             console.log(data2);
             this.videoList = data2['items'].map(item => {
@@ -236,7 +237,7 @@ export class CreatordetailComponent implements OnInit {
                 item.snippet.description);
             });
           });
-
+          /* Disable call for now */
         });
         return this.creator$ = this.db.doc$('users/' + id);
       })

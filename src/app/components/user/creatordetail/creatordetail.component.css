@@ -2,19 +2,16 @@ agm-map {
     height: 300px;
 }
 
-.card {display:inline-block;}
-
-.cardImage {
-    width: 268px;
-    height: 180px;
+.card-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.title {
+.card-title {
+    margin-bottom: 30px;
     font-size: 0.85rem;
     font-weight: bold;
 }
-
-
 
 .channel {
     font-size: 0.75rem;
@@ -26,4 +23,82 @@ agm-map {
 
 .description {
     font-size: 0.75rem;
+}
+
+.detail-banner {
+    width: 100%;
+}
+
+.creator-profile-detail {
+    margin-top: 18px;
+}
+
+@media(max-width: 991px) {
+    .creator-name h3 {
+        font-size: 18px;
+    }
+}
+
+.creator-action {
+    margin-top: 10px;
+}
+
+.creator-action button {
+    margin-left: 10px;
+}
+
+@media(min-width: 992px) {
+    .creator-description {
+        position: absolute;
+        padding-right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        word-break: break-all;
+        text-align: justify;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .creator-description {
+        word-break: break-all;
+        margin: 0;
+        text-align: justify;
+        min-height: 40px;
+    }
+}
+
+.creator-name {
+    position: absolute;
+    right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    top: 50%;
+    transform: translate(-10%, -50%);
+}
+
+.creator-name h3,
+.creator-name p {
+    margin-bottom: 0 !important;
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .creator-avatar {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+
+.card-text {
+    position: absolute;
+    bottom: 15px;
+}
+
+.youtube-connect {
+    color: white !important;
+}
+
+.creator-name h3 {
+    word-break: break-all;
+    font-size: 22px;
 }

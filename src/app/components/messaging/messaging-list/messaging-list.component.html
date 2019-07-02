@@ -1,43 +1,62 @@
-<div *ngIf="auth">
-  <h3>Hello, {{auth.userObject.userName}}! Welcome to your Messages.</h3>
+<div *ngIf="auth" class="marginTop">
   <div class="row">
-    <div class="col-sm">
-
-      <div *ngFor="let message of messages | async">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{message.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">From: {{message.sendFrom.userName}}</h6>
-            <p class="card-text"> {{message.body}}</p>
-            <a (click)="replyActive(message.sendFrom.userId, message.messageId)" class="card-link">Reply</a>
-            <a (click)="archiveMessage(message.messageId)" class="card-link">Archive</a>
-            <p><time class="timestamp" datetime="2016-1-1">Sent: {{message.createdAt.seconds * 1000 |
-                date:'MM-dd-yyyy'}}</time></p>
-          </div>
-        </div>
-
-      </div>
+    <div class="col-12">
+      <p class="lead text-center">Hello, {{auth.userObject.userName}}! Welcome to your Messages.</p>
     </div>
-    <div class="col-sm">
-
-      <button (click)="showArchive()" class="btn btn-primary">Show Archive</button>
-      <div *ngIf="archiv">
-        <div *ngFor="let message of messagearchive | async">
-          <div class="card" style="width: 18rem;">
+    <div class="col-12">
+      <div class="row">
+        <div *ngFor="let message of messages | async" class="col-lg-4 col-md-6 col-sm-6 col-12 card-item">
+          <div class="card h-100 ">
             <div class="card-body">
-              <h5 class="card-title">{{message.title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">From: {{message.sendFrom.userName}}</h6>
+              <div class="card-title">
+                <h3>{{message.title}}</h3>
+                <h5>
+                  From: {{message.sendFrom.userName}}
+                  <span>{{message.createdAt.seconds * 1000 | date:'MM-dd-yyyy'}}</span>
+                </h5>
+              </div>
               <p class="card-text"> {{message.body}}</p>
-              <a href="#" class="card-link">Reply</a>
-              <a (click)="toInbox(message.messageId)" class="card-link">To Inbox</a>
-              <p><time class="timestamp" datetime="2016-1-1">Send {{message.createdAt.seconds * 1000 |
-                  date:'MM-dd-yyyy'}}</time></p>
+              <div class="card-action">
+                <button (click)="replyActive(message.sendFrom.userId, message.messageId)" class="btn btn-custom">
+                  <i class="fas fa-reply"></i>Reply
+                </button>
+                <button (click)="archiveMessage(message.messageId)" class="btn btn-custom pull-right">
+                  <i class="fas fa-archive"></i>Archive
+                </button>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
-
+    </div>
+    <div class="col-12">
+      <button (click)="showArchive()" class="btn btn-danger show-archive">Show Archive</button>
+      <div class="row">
+        <ng-container *ngIf="archiv">
+          <div *ngFor="let message of messagearchive | async" class="col-lg-4 col-md-6 col-sm-6 col-12 card-item">
+            <div class="card h-100">
+              <div class="card-body">
+                <div class="card-title">
+                  <h3>{{message.title}}</h3>
+                  <h5>
+                    From: {{message.sendFrom.userName}}
+                    <span>{{message.createdAt.seconds * 1000 | date:'MM-dd-yyyy'}}</span>
+                  </h5>
+                </div>
+                <p class="card-text"> {{message.body}}</p>
+                <div class="card-action">
+                  <button class="btn btn-custom">
+                    <i class="fas fa-reply"></i>Reply
+                  </button>
+                  <button (click)="toInbox(message.messageId)" class="btn btn-custom pull-right">
+                    <i class="fas fa-inbox"></i>To Inbox
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>

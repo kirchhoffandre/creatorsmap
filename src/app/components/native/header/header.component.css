@@ -1,11 +1,43 @@
-
-
 a {
-
     text-decoration: none;
     color: black;
 }
 
-.marginTop {
-    margin-bottom: 20px;
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.navbar > a {
+    font-family: 'ProximaNova-Semibold';
+    padding-bottom: 0;
+    font-size: 25px;
+}
+
+.navbar-toggler-icon {
+    background-image: url('/assets/download.svg');
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: white;
+    background-color: red;
+}
+
+#dropdown01::after {
+    vertical-align: 0;
+    transform: translateY(-50%);
+}
+
+.dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-menu .dropdown-item:first-child,
+.dropdown-menu .dropdown-item:last-child {
+    margin-top: 0;
+}
+
+.admin-menu {
+    margin-top: 10px;
 }

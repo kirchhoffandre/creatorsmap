@@ -1,44 +1,47 @@
-<div *ngIf="user$ | async as user">
-  <div class="userprofile">
-    <img [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
-    <div class="row">
-      <div class="col-2">
-        <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
-      </div>
-      <div class="col-10">
-        <div>
-          <h3>{{user?.snippet.title}}</h3>
-          <p>{{user?.snippet.description}}</p>
+<div *ngIf="user$ | async as user" class="row">
+  <div class="userprofile col-md-12">
+    <img class="detail-banner" [src]="user.brandingSettings.image.bannerImageUrl" alt="Channel Banner" />
+    <div class="row creator-profile-detail">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-5 col-sm-12">
+            <div class="row">
+              <div class="col-3 creator-avatar">
+                  <img class="img-fluid rounded-circle" [src]="user.snippet.thumbnails.default.url" alt="User Image" />
+              </div>
+              <div class="col-8 creator-name">
+                <h3>{{user?.snippet.title}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-sm-12">
+            <p class="creator-description">{{user?.snippet.description}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
   <hr>
-  
-  <h3>Update Your Location</h3>
-  <p>Drag Maker to your desired location and save it!</p>
-  <button class="btn btn-danger" (click)="updateLocation()">Save Location</button>
+  <div class="col-md-12">
+    <h3>Update Your Location</h3>
+    <p>Drag Maker to your desired location and save it!</p>
+    <button class="btn btn-danger save-location" (click)="updateLocation()">Save Location</button>
+  </div>
+  <div class="col-md-12">
+    <agm-map [latitude]="lat" [zoom]="6" [longitude]="lng" [styles]="mapStyle" (mapClick)="onMapClick($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'../../../assets/1customMarker.png'">
 
+        <agm-snazzy-info-window [maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true" [closeOnMapClick]="true"
+          [borderRadius]="'4px'">
 
+          <ng-template>
+            <img [src]="user.snippet.thumbnails.default.url" class="map-avatar" alt="Creator Image">
+            <p class="">{{user.snippet.title}}</p>
+          </ng-template>
+        </agm-snazzy-info-window>
 
-  <agm-map [latitude]="lat" [zoom]="6" [longitude]="lng" [styles]="mapStyle" (mapClick)="onMapClick($event)">
-    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'../../../assets/1customMarker.png'">
-
-      <agm-snazzy-info-window [maxWidth]="400" [maxHeight]="400" [closeWhenOthersOpen]="true" [closeOnMapClick]="true"
-        [borderRadius]="'4px'">
-
-        <ng-template>
-          <img [src]="user.snippet.thumbnails.default.url" class="" alt="Creator Image">
-          <p class="">{{user.snippet.title}}</p>
-        </ng-template>
-      </agm-snazzy-info-window>
-
-    </agm-marker>
-  </agm-map>
-
-
-
+      </agm-marker>
+    </agm-map>
+  </div>
 </div>
 

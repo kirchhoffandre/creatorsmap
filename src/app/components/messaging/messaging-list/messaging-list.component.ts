@@ -28,6 +28,14 @@ export class MessagingListComponent implements OnInit {
       this.afs.authState.subscribe(user => {
       this.loggedInUserId = user.uid;
 
+      // this.messages = this.db.col$('messages', ref => ref
+      // .where('sendTo', '==', '7lW8IstRAmWxCXx3vwPYXJe9Dtv2')
+      // .where('archived', '==', false));
+      
+      // this.messagearchive = this.db.col$('messages', ref => ref
+      // .where('sendTo', '==', '7lW8IstRAmWxCXx3vwPYXJe9Dtv2')
+      // .where('archived', '==', false));
+
       this.messages = this.db.col$('messages', ref => ref
       .where('sendTo', '==', user.uid)
       .where('archived', '==', false));
